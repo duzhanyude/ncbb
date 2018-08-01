@@ -1,0 +1,9 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hcy.ncbb.main.mapper.MainMapper" >
+    <select id="getCount" resultType="com.hcy.ncbb.main.bean.InfoBean">
+         select count(*) register,
+         (SELECT count(*) from user_base) rgTotal,
+         (SELECT SUM(amountperday) from data_call WHERE amountperday>0) scanCode 
+         from user_base where registtime>= date_add(CURDATE(), interval '0' day_second)
+    </select>
+</mapper>

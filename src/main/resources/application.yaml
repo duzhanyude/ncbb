@@ -1,0 +1,39 @@
+server: 
+  port: 8099
+  context-path: /moveBus
+spring: 
+  thymeleaf: 
+    cache: false
+  datasource: 
+    url: jdbc:mysql://219.153.12.53:3306/ncbb
+    username: pms
+    password: 21859138809511e7b098002219883d48
+    #使用druid数据源
+    type: com.alibaba.druid.pool.DruidDataSource
+    driverClassName: com.mysql.jdbc.Driver
+    filters: stat
+    maxActive: 20
+    initialSize: 1
+    maxWait: 60000
+    minIdle: 1
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: select 'x'
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+    maxOpenPreparedStatements: 20
+mybatis: 
+   mapper-locations: classpath:mybatis/*/*.xml
+   config-location: classpath:mybatis/mybatis-config.xml
+#pagehelper分页插件
+pagehelper:
+  helper-dialect: mysql
+  reasonable: true
+  support-methods-arguments: true
+  params: count=countSql
+logging: 
+  level: 
+    com.hcy.ncbb: error
+  file: ./log.txt

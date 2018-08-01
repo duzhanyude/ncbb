@@ -1,0 +1,11 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hcy.ncbb.user.mapper.UserInfoMapper" >
+    <select id="queryDataCall" resultType="com.hcy.ncbb.user.bean.UserInfo">
+        SELECT t2.userid, t2.phone,t3.city,t3.cardtype,t2.registtime,t4.QRCodeId,t1.amountperday count 
+        FROM data_call t1 
+        LEFT JOIN user_base t2 on t1.openid=t2.username 
+        LEFT JOIN base_phone_city t3 ON t3.prefix=LEFT(t2.phone,7) 
+        LEFT JOIN user_autoplate t4 ON t2.userid=t4.userid 
+        WHERE t1.amountperday>0 ORDER BY t2.registtime DESC
+    </select>
+</mapper>
